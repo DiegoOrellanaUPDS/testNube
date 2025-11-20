@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using EjemploRailwayNube.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<EjemploRailwayNubeContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("EjemploRailwayNubeContext") ?? throw new InvalidOperationException("Connection string 'EjemploRailwayNubeContext' not found.")));
 
 // Add services to the container.
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
