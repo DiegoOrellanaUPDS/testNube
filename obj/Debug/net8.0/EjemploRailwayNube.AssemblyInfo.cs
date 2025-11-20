@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EjemploRailwayNube")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d1c6ea1e6b3b34ccc02b68d601123e1aff99c4a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+602bc6caa35da8cf6d0ee1f4213469ea56737b12")]
 [assembly: System.Reflection.AssemblyProductAttribute("EjemploRailwayNube")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EjemploRailwayNube")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

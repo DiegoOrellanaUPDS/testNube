@@ -1,9 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using EjemploRailwayNube.Data;
+
+var url = Environment.GetEnvironmentVariable("DATSABASE_URL");
+Console.WriteLine($"La coneccion es esta {url}");
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EjemploRailwayNubeContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("EjemploRailwayNubeContext") ?? throw new InvalidOperationException("Connection string 'EjemploRailwayNubeContext' not found.")));
+    options.UseNpgsql(url));
 
 // Add services to the container.
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
@@ -14,12 +18,19 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var db = scope.ServiceProvider.GetRequiredService<EjemploRailwayNubeContext>();
+    db.Database.Migrate();
 }
+
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
 app.UseHttpsRedirection();
 
